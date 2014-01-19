@@ -125,7 +125,6 @@
 			}
 			
 			
-			
 			function subcategoriesFromJson(data){
 				for (var houseIndex in data) {
 					var house = data[houseIndex];
