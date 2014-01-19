@@ -124,7 +124,6 @@
 				document.getElementById("list_of_categories_in_datalist").innerHTML = listOfCategoriesInDatalist;
 			}
 			
-			
 			function subcategoriesFromJson(data){
 				for (var houseIndex in data) {
 					var house = data[houseIndex];
