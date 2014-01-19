@@ -133,7 +133,7 @@
 					//houses.push(house);
 				}
 			};
-			
+			//STUPID CHANGINGS
 			function showSubcategories(categoryId){
 				$.ajax({
 					url: "getSubcategoriesList.php?category_id=" + categoryId,
