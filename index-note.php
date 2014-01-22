@@ -175,12 +175,12 @@
 				// document.getElementById("list_of_categories").innerHTML = listOfCategories;
 			}
 			
-			<!-- var existenceOfUsers = <?php
-			$login = $_POST["login"];
-			$password = $_POST["password"];
-			$result = mysql_query("SELECT COUNT(*) as cnt FROM users WHERE login='$login' and password='$password';");
-			
-			?>; -->
+			// var existenceOfUsers = <?php
+			// $login = $_POST["login"];
+			// $password = $_POST["password"];
+			// $result = mysql_query("SELECT COUNT(*) as cnt FROM users WHERE login='$login' and password='$password';");
+// 			
+			// ?>;
 			
 			(function($, undefined){
 				$(function(){
@@ -189,7 +189,6 @@
 					$('#menu').css({
 						'right': $right_of_menu + 'px'
 					});
-					
 					//authentication validation
 					$('form[name=authentication]').submit(function(){
 						$(this).find('.error').remove();
@@ -235,7 +234,6 @@
 						$(this).hide(400);
 						return false;
 					});
-					
 					//show authentication and registration
 					$('#authentication input[type=submit]').hover(function(){
 						$('#authentication').animate({
@@ -255,7 +253,6 @@
 						}, "slow")
 						return false;
 					});
-					
 					//disapear of authentication and registration
 					$(document).click(function(event){
 				    	if( $(event.target).closest("#registration").length ) 
@@ -268,7 +265,6 @@
 						}, "fast")
 						event.stopPropagation();
 				    });
-				    
 				    //show the form for adding
 				    $('p.add_button').click(function(){
 				    	document.getElementById("add_note_popup").style.display = 'inline-block';
@@ -301,20 +297,6 @@
 				</div>
 			</div>
 			
-			<div id="subcategories" style="display: none;">
-				<div id="subcategory">
-					<p>sub1 sub1 sub1sub1sub1 sub1sub1sub1</p>
-				</div>
-				<div id="subcategory" class="upper_tab">
-					<p>sub2</p>
-				</div>
-				<div id="subcategory">
-					<p>sub3</p>
-				</div>
-				<div id="subcategory">
-					<p>sub4</p>
-				</div>				
-			</div>
 			
 			<div id="content">
 				<div id="cover" style="">
