@@ -26,16 +26,7 @@ img {
 	/*border: solid red 2px;*/
 }
 
-/****categories things*/
-#menu {
-	position: fixed;
-	/*border: solid green 2px;*/
-	width: auto;
-	margin-top: 10px;
-	text-align: left;
-	background-color: white;
-	border-radius: .5em .5em 1em 1em / .5em .5em 2em 2em;
-}
+
 .button {
     -moz-user-select: none;
     background-color: #2061bb;
@@ -79,7 +70,7 @@ img {
 }
 
 
-/****content things*/
+/****CONTENT things*/
 #content {
 	background-color: white;
 	position: relative;
@@ -93,18 +84,52 @@ img {
 	/*padding: 20px;*/
 	height: auto;
 }
-/****cover things*/
 #cover {
+	position: absolute;
 	width: 100%;
 	height: auto;
 	padding: 0;
 	margin: 0;
+	/*display: block;*/
 }
-/****categories things*/
-#list_of_categories {
+/****ADDITION things*/
+#add_note_popup {
+	display: none;
+	position: absolute;
+}
+
+/****MENU things*/
+#menu {
+	position: fixed;
+	/*border: solid green 1px;*/
+	width: auto;
+	margin-top: 10px;
+	text-align: left;
+	background-color: white;
+	display: inline;
+	/*padding: 5px;*/
 	
 }
-/****subcategories things*/
+#list_of_categories {
+	position: relative;
+	display: inline-block;
+	width: auto;
+	vertical-align: top;
+	
+	/*margin: 5px;*/
+}
+#list_of_subcategories {
+	position: relative;
+	display: inline-block;
+	width: auto;
+	vertical-align: top;
+	opacity: 0;
+}
+p.category {
+	border: 1px solid grey;
+	color: #2d178a;
+	cursor: pointer;
+}
 #subcategories {
 	/*border: solid green 2px;*/
 	position: fixed;
@@ -123,25 +148,8 @@ img {
 	padding: 0px;
 	
 }
-.upper_tab {
-	position: relative;
-	background-color: white;
-	border: none !important;
-	border-right: solid #d9dadb 2px !important;
-	z-index: 2;
-	margin-left: -10px;
-	box-shadow: 0em 0 0px #d2dbe9 !important;
-}
-.vertical_text {
-	-moz-transform: rotate(90deg);
-	-webkit-transform: rotate(90deg);
-	-o-transform: rotate(90deg);
-	padding: 0.5px;
-}
 
-
-
-/****header things*/
+/****HEADER things*/
 header {
 	height: auto;
 	/*border: solid brown 2px;*/
@@ -153,6 +161,7 @@ header {
 	color: #2d178a;
 	font-style: bold;
 	margin: 0;
+	cursor: pointer;
 	/*text-shadow: rgba(255,255,255,.5) 0 -1px 0, rgba(0,0,0,0.38) 0 .1em .15em;*/
 }
 .small_text {
@@ -225,6 +234,7 @@ input[type="submit"] {
 }
 
 #registration,#authentication {
+	display: block;
 	position: absolute;
 	left: 50%;
 	width: auto;

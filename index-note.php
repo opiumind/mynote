@@ -117,7 +117,7 @@
 				var listOfCategories = "";
 				var listOfCategoriesInDatalist = "";
 				for (var i = 0; i < categories.length; i++){
-					listOfCategories += "<p onclick='showSubcategories(" + categories[i][0] + ")' class='add_button'>" + categories[i][1] + "</p><br />";
+					listOfCategories += "<p onclick='showSubcategories(" + categories[i][0] + ")' class='category'>" + categories[i][1] + "</p>";
 					listOfCategoriesInDatalist += "<option value='" + categories[i][1] + "'></option>";
 				}
 				document.getElementById("list_of_categories").innerHTML = listOfCategories;
@@ -131,15 +131,22 @@
 					//houses.push(house);
 				}
 			};
-			//STUPID CHANGINGS
+			
 			function showSubcategories(categoryId){
-				$.ajax({
-					url: "getSubcategoriesList.php?category_id=" + categoryId,
-					type: 'GET',
-					dataType: 'json',
-					success: subcategoriesFromJson,
-					error: function(error) {console.log(error);}
-				});
+				$('#list_of_subcategories').remove();
+				$('#list_of_categories').after('<div id="list_of_subcategories"></div>');
+				var listOfSubcategories = "<p class='category'>jdfhjfh</p><p class='category'>jdfhjfh</p>"
+				document.getElementById("list_of_subcategories").innerHTML = listOfSubcategories;
+				$('#list_of_subcategories').animate({
+					'opacity': '1'
+				}, "slow")
+				// $.ajax({
+					// url: "getSubcategoriesList.php?category_id=" + categoryId,
+					// type: 'GET',
+					// dataType: 'json',
+					// success: subcategoriesFromJson,
+					// error: function(error) {console.log(error);}
+				// });
 				//$.getJSON("getSubcategoriesList.php?category_id=" + categoryId, subcategoriesFromJson);
 				//var subcategories = 
 						// print "[";
@@ -177,15 +184,13 @@
 			
 			(function($, undefined){
 				$(function(){
+					//show subcategories
 					var $right_of_menu = parseInt($('#content').css('left')) + parseInt($('#content').css('width')) / 2;
-					
-					// $('#content').click(function(){
-						// alert ($right_of_menu);
-					// });
 					$('#menu').css({
 						'right': $right_of_menu + 'px'
 					});
 					
+					//authentication validation
 					$('form[name=authentication]').submit(function(){
 						$(this).find('.error').remove();
 						if ($(this).find('input[name=e-mail]').val()==''){
@@ -202,9 +207,10 @@
 						);
 						$(this).find('input[name=e-mail]').val("");
 						$(this).find('input[name=password]').val("");
+						$(this).hide(400);
 						return false;
 					});
-					
+					//registration validation
 					$('form[name=registration]').submit(function(){
 						$(this).find('.error').remove();
 						if ($(this).find('input[name=e-mail]').val()==''){
@@ -226,18 +232,17 @@
 						$(this).find('input[name=e-mail]').val("");
 						$(this).find('input[name=password]').val("");
 						$(this).find('input[name=confirm_password]').val("");
-						$(this).animate({
-							'opacity': '-=0.1'
-						})
-						.animate({
-							'display': 'none'
-						});
+						$(this).hide(400);
 						return false;
 					});
 					
+					//show authentication and registration
 					$('#authentication input[type=submit]').hover(function(){
 						$('#authentication').animate({
 							'top': '30px'
+						}, "slow")
+						$("#registration").animate({
+				      		'top': '-8em'
 						}, "slow")
 						return false;
 					});
@@ -245,20 +250,36 @@
 						$('#registration').animate({
 							'top': '30px'
 						}, "slow")
+						$("#authentication").animate({
+				      		'top': '-5.8em'
+						}, "slow")
 						return false;
 					});
-					// $('*').click(function(){
-						// // if ($('#authentication').click()==false) {
-							// // $('#authentication').animate({
-								// // 'top': '-5em'
-							// // }, "slow")
-						// // } else {
-							// // return false;
-						// // }
-						// alert ("wazap!");
-						// return false;
-					// });
 					
+					//disapear of authentication and registration
+					$(document).click(function(event){
+				    	if( $(event.target).closest("#registration").length ) 
+				        	return;
+				    	$("#registration").animate({
+				      		'top': '-8em'
+						}, "fast")
+						$("#authentication").animate({
+				      		'top': '-5.8em'
+						}, "fast")
+						event.stopPropagation();
+				    });
+				    
+				    //show the form for adding
+				    $('p.add_button').click(function(){
+				    	document.getElementById("add_note_popup").style.display = 'inline-block';
+				    	document.getElementById("cover").style.display = 'none';
+				    	return false;
+				    });
+					$('p.header').click(function(){
+				    	document.getElementById("cover").style.display = 'inline-block';
+				    	document.getElementById("add_note_popup").style.display = 'none';
+				    	return false;
+				    });
 				});
 			})(jQuery);
 			
@@ -268,13 +289,15 @@
 				
 				<p class="header">MyNote</p>
 				<p class="small_text">not to forget my knowledge</p>
-				<p id="add_note" class="add_button" style="display: none;">
+				<p id="add_note" class="add_button">
 					Add something
 				</p>
 			</header>
 
-			<div id="menu" style="display: block;">
+			<div id="menu" style="">
 				<div id="list_of_categories">
+				</div>
+				<div id="list_of_subcategories">
 				</div>
 			</div>
 			
@@ -294,7 +317,7 @@
 			</div>
 			
 			<div id="content">
-				<div id="cover" style="display: block;">
+				<div id="cover" style="">
 					<img src="http://oboibox.ru/orig/Shkolnaya-tetrad%28oboibox.ru%29.jpg"/>
 				</div>
 				<div id="notes">
@@ -353,15 +376,15 @@
 				<form name="registration" method="post" action="">
 					<input id="login_input" class="" type="text" name="e-mail" value="" 
 							onfocus="visibilityOfLabels('login_input','in');" onblur="visibilityOfLabels('login_input','out');">
-					<label id="login_input_label"></label>
+					<!-- <label id="login_input_label"></label> -->
 					
 					<input id="password_input" class="" type="text" name="password" value="" 
 							onfocus="visibilityOfLabels('password_input','in');" onblur="visibilityOfLabels('password_input','out');">
-					<label id="password_input_label"></label>
+					<!-- <label id="password_input_label"></label> -->
 					
 					<input id="confirm_password_input" class="" type="text" name="confirm_password" value="" 
 							onfocus="visibilityOfLabels('password_input','in');" onblur="visibilityOfLabels('password_input','out');">
-					<label id="confirm_password_input_label"></label>
+					<!-- <label id="confirm_password_input_label"></label> -->
 					
 					<input type="submit" class="button" value="Sign up" onclick="">
 				</form>
