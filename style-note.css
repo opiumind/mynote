@@ -32,6 +32,7 @@ header {
 	text-align: center;
 }
 .header {
+	display: inline-block;
 	font-size: 2.7em;
 	color: #2d178a;
 	font-style: bold;
@@ -58,7 +59,7 @@ header {
 /****CONTENT things**********************/
 #content {
 	background-color: white;
-	position: relative;
+	position: absolute;
 	/*border: solid blue 2px;*/
 	/*border-radius: 9px 9px 9px 9px;*/
 	box-shadow: 0 0 17px #d2dbe9, 0 0.2em 15px #d2dbe9, 0 0.4em 5px rgba(0, 0, 0, 0.2);
@@ -70,31 +71,86 @@ header {
 	height: auto;
 }
 #cover {
+	display: none;
 	position: absolute;
 	width: 100%;
 	height: auto;
 	padding: 0;
 	margin: 0;
+	
+}
+#notes {
+	display: none;
+	box-shadow: 0 0 17px #d2dbe9, 0 0.2em 15px #d2dbe9, 0 0.4em 5px rgba(0, 0, 0, 0.2);
 }
 
+/****ADDITION things**********************/
+#add_note_popup {
+	display: inline-block;
+	position: absolute;
+	width: 100%;
+	padding: 10px 10px 20px 10px;
+	/*text-align: center;*/
+	/*border: solid #d6d8d8 1px;*/
+	background-color: rgba( 253, 250, 255, 0.2);
+	box-shadow: 0 0 17px #d2dbe9, 0 0.2em 15px #d2dbe9, 0 0.4em 5px rgba(0, 0, 0, 0.2);
+}
+#add_note_popup div{
+	vertical-align: top;
+	position: relative;
+}
+textarea{
+	font-size: 1.1em !important;
+	color: black;
+	font-family: Arial;
+	background: none;
+	border: solid #d6d8d8 1px;
+	padding: 6px;
+	/*margin: 2px;*/
+}
+#add_note_popup input[type="text"]{
+	/*background-color: white;*/
+}
+
+.code_in_addition {
+	-moz-user-select: none;
+	width: 80%;
+	height: 100px;
+	
+}
+.code_in_addition,.code_in_addition+label{
+	margin-right: 20%;
+}
+.text_in_addition {
+	-moz-user-select: none;
+	width: 80%;
+	height: 200px;
+	
+	/*border: solid 2px red;*/
+}
+.text_in_addition,.text_in_addition+label{
+	margin-left: 19%;
+}
+.center_align {
+	text-align: center;
+}
 /****MENU things**********************/
 #menu {
 	position: fixed;
 	/*border: solid green 1px;*/
 	width: auto;
-	margin-top: 10px;
+	margin-top: 30px;
 	text-align: left;
-	background-color: white;
+	background-color: rgba( 255, 253, 255, 1);
 	display: inline;
 	/*padding: 5px;*/
-	
+	padding: 0;
 }
 #list_of_categories {
 	position: relative;
 	display: inline-block;
 	width: auto;
 	vertical-align: top;
-	
 	/*margin: 5px;*/
 }
 #list_of_subcategories {
@@ -105,24 +161,35 @@ header {
 	opacity: 0;
 }
 p.category {
-	border: 1px solid grey;
+	border: 1px solid #d6d8d8;
 	color: #2d178a;
 	cursor: pointer;
 }
 
-
 /****FORMS things****************************/
+::-webkit-input-placeholder{
+	color: #999999;
+	font-size: 1.1em;
+	opacity: 0.6;
+}
+.focused::-webkit-input-placeholder {
+	opacity: 0.2;
+}
+::-moz-placeholder,label{
+	color: #999999;
+	font-size: 1.1em;
+	opacity: 0.6;
+}
+.focused::-moz-placeholder {
+	opacity: 0.2;
+}
 .error {
 	font-style: italic;
 	color: #f67474;
 }
-textarea{
-	font-size: 1.1em !important;
-	color: green;
-	font-family: Arial;
-	background: none;
-	border: solid #d6d8d8 1px;
-	margin: 2px;
+.focused {
+	/*border-width: 3px;*/
+	background-color: rgba( 255, 253, 255, 1);
 }
 input{
 	font-size: 1.1em !important;
@@ -130,6 +197,7 @@ input{
 	font-family: Arial;
 	background: none;
 	display: block;
+	/*position: absolute;*/
 	
 }
 input[type="text"] {
@@ -145,22 +213,19 @@ input[type="submit"] {
 	width: 282px !important;
 }
 label {
-	position: absolute;
 	cursor: text;
-	left: 2px;
-	font-size: 1em;
-	/*padding: 6px;*/
-	/*padding-top: 6px;*/
-	
-	color: #999999;
-	opacity: 0.6;
-	/*z-index: -1;*/
+	position: absolute;
+	/*border: solid red 1px;*/
+	left: 0;
+	top: 0;
+	padding: 6px;
+	font-style: bold;
+	font-size: 1.2em;
+	z-index: 0;
 }
 .hidden_label{
 	display: none;
 }
-
-
 
 /****AUTHENTICATION and REGISTRATION things**********************/
 #registration {
@@ -186,26 +251,7 @@ label {
 	/*border: blue 2px solid;*/
 }
 
-/****ADDITION things**********************/
-#add_note_popup {
-	/*border: solid 2px red;*/
-	position: absolute;
-	margin: 10px;
-	width: 800px;
-	left: 51.5%;
-	margin-left: -400px;
-	display: none;
-}
-.code_in_addition {
-	width: 95%;
-	-moz-user-select: none;
-}
-.text_in_addition {
-	-moz-user-select: none;
-	width: 95%;
-	height: 200px;
-	/*border: solid 2px red;*/
-}
+
 
 /****BUTTON things**********************/
 .button {
